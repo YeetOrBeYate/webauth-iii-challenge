@@ -4,8 +4,10 @@ const rest = require("./restricted.js");
 const router = express.Router();
 
 router.get("/", rest, (req,res)=>{
-    console.log(req.token)
-    db.getUsers()
+    
+    const id = req.token.name;
+
+    db.getUsers(id)
     .then(users=>{
         res.status(200).json({users})
     })
